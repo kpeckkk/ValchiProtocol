@@ -283,7 +283,6 @@ describe("Integration tests", function () {
         //trasfer funds to account
         await DAI.connect(protocolAccount).approve(investorsRouter.address,ethers.utils.parseUnits("50000.0",18));
 
-
         investorsRouter.connect(protocolAccount).investInLiquidityPool(investor.address,ethers.utils.parseUnits("50000.0",18));
     })
 });

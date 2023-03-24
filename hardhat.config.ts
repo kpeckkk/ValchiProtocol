@@ -1,13 +1,19 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+import { resolve } from "path";
+import { config as dotenvConfig } from "dotenv";
+import 'hardhat-abi-exporter';
+
+
+dotenvConfig({ path: resolve("./.env") });
+
+const PRIVATEKEY : string = process.env.PRIVATE_KEY as string;
 
 const config: HardhatUserConfig = {
   networks: {
-    hardhat: {
-      forking: {
-        enabled: true,
-        url: "https://polygon-mainnet.g.alchemy.com/v2/3uZv-TJ643whtBW56eP96sDplMgyct_U",
-      },
+    Polygon: {
+        url: "https://polygon-mainnet.g.alchemy.com/v2/6xZys5fhooF1nDDIgsO5Spi6yPEL5nI8",
+        accounts: [PRIVATEKEY],
     },
   },
   paths: {
@@ -19,6 +25,9 @@ const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.14",
   },
+  abiExporter: {
+    path: './abi',
+  }
 };
 
 export default config;
